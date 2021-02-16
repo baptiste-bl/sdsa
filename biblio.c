@@ -162,6 +162,7 @@ int emprunter(T_Bibliotheque *ptrB){
 
     char nom_emp[50];
     T_livre livre;
+    int test = 0;
     saisirLivre(&livre);
     lireChaine("EMPRUNTEUR : ",nom_emp,50);
     for(int i=0;i<ptrB->nbLivres;i++)
@@ -169,9 +170,10 @@ int emprunter(T_Bibliotheque *ptrB){
         if((strcmp(ptrB->etagere[i].titre,livre.titre)==0)&&(strcmp(ptrB->etagere[i].auteur,livre.auteur)==0))
         {
             strcpy(ptrB->etagere[i].emprunteur,nom_emp);
+            test = 1;
         }
     }
-    return 0;
+    return test;
 
 }
 int restituer(T_Bibliotheque *ptrB){

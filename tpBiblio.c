@@ -96,6 +96,14 @@ switch(chx)
             else{
                 printf("Livre ajouté");
             }
+	    case 7 : reponse = restituer(&B);
+            if (reponse==0)
+            {
+                printf("Echec");
+            }
+            else{
+                printf("Success");
+            }
 	}
 
 }while(chx!=0);
