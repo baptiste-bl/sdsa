@@ -42,7 +42,8 @@ int main()
 {
 int reponse,chx;
 T_Bibliotheque B; 
-init( &B );
+//init( &B );
+chargement(&B);
 
 do
 {
@@ -50,10 +51,14 @@ chx= menu();
 switch(chx)
 	{
 	case  1 : reponse = ajouterLivre(   &B  );
-				if (reponse==1)
+				if (reponse==1){
 					printf(" ajout reussi !!");
+					sauvegarde(&B);
+				}
 					else
+					{
 					printf("impossible d ajouter (bibliotheque pleine)");
+					}
 			break;
 	case 2 : reponse=afficherBibliotheque(&B);
 			if (reponse==0)	
@@ -73,9 +78,12 @@ switch(chx)
 			break;
 	case 5 : reponse=suppression(&B);
 			if (reponse==0)	
-					printf("La suppression a échouée");
+			{
+				printf("La suppression a échouée");
+			}
 			else{
-					printf("Suppression effectuée");
+				sauvegarde(&B);
+				printf("Suppression effectuée");
 			}
 
 			break;			
