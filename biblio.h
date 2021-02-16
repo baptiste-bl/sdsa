@@ -25,5 +25,7 @@ int  afficherBibliotheque(const T_Bibliotheque  *ptrB);
 int rechercherBiblio(const T_Bibliotheque *ptrB);
 int rechercherAuteur(const T_Bibliotheque *ptrB);
 int suppression(T_Bibliotheque *ptrB);
+void sauvegarde(T_Bibliotheque *ptrB);
+void chargement(T_Bibliotheque *ptrB);
 
 #endif
