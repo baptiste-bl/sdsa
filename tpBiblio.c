@@ -4,7 +4,7 @@
 int menu()
 {
 	int choix;
-// au programme du TP7 :
+// au programme du TP6 :
 printf("\n\n 1 - ajouter un nouveau livre dans la bibliotheque "); 
 printf("\n 2 - afficher tous les livres de la bibliotheque "); 
 printf("\n 3 - rechercher un livre (par son titre)");  // il peut y avoir plusieurs livres de même titre. Dans ce cas, indiquez le nombre d'exemplaires disponibles
@@ -13,7 +13,7 @@ printf("\n 5 - supprimer un livre de la bibliotheque");
 // si les 5 choix ci dessus sont bien codés, modifiez votre structure T_Livre et passez à 5 champs (avec cote,editeur et annee)
 
 
-// au programme du TP8 :
+// au programme du TP7 :
 // ajouter le champ emprunteur à votre structure T_Livre
 /*
 printf("\n 6 - emprunter un livre de la bibliotheque");
@@ -60,8 +60,25 @@ switch(chx)
 					printf("La bibliotheque est vide");
 
 			break;	
-	
-	
+				break;
+	case 3 : reponse=rechercherBiblio(&B);
+			if (reponse==0)	
+					printf("Le livre n'a pas été trouvé");
+
+			break;	
+	case 4 : reponse=rechercherAuteur(&B);
+			if (reponse==0)	
+					printf("L'auteur n'a pas été trouvé");
+
+			break;
+	case 5 : reponse=suppression(&B);
+			if (reponse==0)	
+					printf("La suppression a échouée");
+			else{
+					printf("Suppression effectuée");
+			}
+
+			break;			
 	
 	
 	

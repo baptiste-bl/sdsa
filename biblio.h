@@ -22,6 +22,8 @@ typedef struct
 void init (T_Bibliotheque *ptrB);
 int ajouterLivre(T_Bibliotheque  *ptrB);
 int  afficherBibliotheque(const T_Bibliotheque  *ptrB);
-
+int rechercherBiblio(const T_Bibliotheque *ptrB);
+int rechercherAuteur(const T_Bibliotheque *ptrB);
+int suppression(T_Bibliotheque *ptrB);
 
 #endif
