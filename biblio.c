@@ -57,7 +57,7 @@ int rechercherBiblio(const T_Bibliotheque *ptrB){
 	if(test == 1){
 		afficherLivre(&(ptrB->etagere[ret]));
 	}
-	else{
+	else if(test>1){
 		printf("il y a plusieurs livres!!!!!,il y a %d livres",test);
 	}
 	return test;
@@ -83,16 +83,17 @@ int rechercherAuteur(const T_Bibliotheque *ptrB){
 }
 int suppression(T_Bibliotheque *ptrB){
 	T_livre livre;
-	saisirLivre(&livre);
+	//saisirLivre(&livre);
+	lireChaine("AUTEUR :",livre.auteur, K_MaxAut );
 	int i=0;
 	int test = 0;
-	while(strcmp((*ptrB).etagere[i].titre,livre.titre)!=0 && strcmp((*ptrB).etagere[i].auteur,livre.auteur)!=0 && i<ptrB->nbLivres)
+	while(strcmp((livre.auteur),ptrB->etagere[i].auteur)!=0)//while(memcmp(&livre,&(ptrB->etagere[i]),sizeof(T_livre))!=0 && (i<ptrB->nbLivres))
 	{
 		i++;
+		printf("rentrer\n");
 	}
-	if(strcmp((*ptrB).etagere[i].titre,livre.titre)==0 && strcmp((*ptrB).etagere[i].auteur,livre.auteur)==0)
+	if(ptrB->nbLivres != i)
 	{
-	
 	for(i;i<ptrB->nbLivres;i++)
 	{
 		ptrB->etagere[i] = ptrB->etagere[i+1];

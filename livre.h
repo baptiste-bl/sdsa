@@ -1,6 +1,6 @@
 #ifndef LIVRE_H   //compilation conditionnelle
 #define LIVRE_H
-
+//#include <mem.h>
 #include "es.h"
 
 # define MAX 20

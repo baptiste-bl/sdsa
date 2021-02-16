@@ -42,8 +42,8 @@ int main()
 {
 int reponse,chx;
 T_Bibliotheque B; 
-//init( &B );
-chargement(&B);
+init( &B );
+//chargement(&B);
 
 do
 {
@@ -53,7 +53,7 @@ switch(chx)
 	case  1 : reponse = ajouterLivre(   &B  );
 				if (reponse==1){
 					printf(" ajout reussi !!");
-					sauvegarde(&B);
+					//sauvegarde(&B);
 				}
 					else
 					{
@@ -82,7 +82,7 @@ switch(chx)
 				printf("La suppression a échouée");
 			}
 			else{
-				sauvegarde(&B);
+				//sauvegarde(&B);
 				printf("Suppression effectuée");
 			}
 
