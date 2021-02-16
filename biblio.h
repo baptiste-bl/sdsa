@@ -28,4 +28,5 @@ int suppression(T_Bibliotheque *ptrB);
 void sauvegarde(T_Bibliotheque *ptrB);
 void chargement(T_Bibliotheque *ptrB);
 int emprunter(T_Bibliotheque *ptrB);
+int restituer(T_Bibliotheque *ptrB);
 #endif

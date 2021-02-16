@@ -174,3 +174,21 @@ int emprunter(T_Bibliotheque *ptrB){
     return 0;
 
 }
+int restituer(T_Bibliotheque *ptrB){
+    T_livre livre;
+    char nom[50];
+    int test = 0;
+    lireChaine("EMPRUNTEUR :",nom, 50 );
+    saisirLivre(&livre);
+    for(int i=0;i<ptrB->nbLivres;i++)
+    {
+        if(strcmp(nom,ptrB->etagere[i].emprunteur)==0 && strcmp(livre.titre,ptrB->etagere[i].titre) && strcmp(livre.auteur,ptrB->etagere[i].auteur))
+        {
+            strcpy(ptrB->etagere[i].emprunteur,NULL);
+            test = 1;
+            break;
+        }
+    }
+    return test;
+
+}
