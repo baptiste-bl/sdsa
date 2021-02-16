@@ -161,16 +161,20 @@ void chargement(T_Bibliotheque *ptrB)
 int emprunter(T_Bibliotheque *ptrB){
 
     char nom_emp[50];
-    T_livre livre;
+    char auteur[50];
+    char titre[50];
+    //T_livre livre;
     int test = 0;
-    saisirLivre(&livre);
+    //saisirLivre(&livre);
+    lireChaine("AUTEUR :",auteur, 50 );
+    lireChaine("TITRE :",titre, 50 );
     lireChaine("EMPRUNTEUR : ",nom_emp,50);
     for(int i=0;i<ptrB->nbLivres;i++)
     {
-        if((strcmp(ptrB->etagere[i].titre,livre.titre)==0)&&(strcmp(ptrB->etagere[i].auteur,livre.auteur)==0))
+        if((strcmp(ptrB->etagere[i].titre,titre)==0)&&(strcmp(ptrB->etagere[i].auteur,auteur)==0))
         {
             strcpy(ptrB->etagere[i].emprunteur,nom_emp);
-            test = 1;
+            test = 1;//success
         }
     }
     return test;
