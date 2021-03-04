@@ -41,7 +41,7 @@ int  afficherBibliotheque(const T_Bibliotheque  *ptrB)
     }
 }
 int rechercherBiblio(const T_Bibliotheque *ptrB){
-    char titre[MAX_TITRE];
+    char titre[MAX_TITRE]="";
     int i=0;
     int test = 0;
     int ret;
@@ -98,8 +98,6 @@ int suppression(T_Bibliotheque *ptrB){
         {
             ptrB->etagere[i] = ptrB->etagere[i+1];
         }
-        //strcpy(ptrB->etagere[i].auteur,ptrB->etagere[i+1].auteur);
-        //strcpy(ptrB->etagere[i].titre,ptrB->etagere[i+1].titre);
     }
     if (test==1){
         (ptrB->nbLivres)--;
@@ -160,9 +158,9 @@ void chargement(T_Bibliotheque *ptrB)
 }
 int emprunter(T_Bibliotheque *ptrB){
 
-    char nom_emp[50];
-    char auteur[50];
-    char titre[50];
+    char nom_emp[50]="";
+    char auteur[50]="";
+    char titre[50]="";
     //T_livre livre;
     int test = 0;
     //saisirLivre(&livre);
@@ -182,17 +180,16 @@ int emprunter(T_Bibliotheque *ptrB){
 }
 int restituer(T_Bibliotheque *ptrB){
     T_livre livre;
-    char nom[50];
+    char nom[50]="";
     int test = 0;
     lireChaine("EMPRUNTEUR :",nom, 50 );
     saisirLivre(&livre);
     for(int i=0;i<ptrB->nbLivres;i++)
     {
-        if(strcmp(nom,ptrB->etagere[i].emprunteur)==0 && strcmp(livre.titre,ptrB->etagere[i].titre) && strcmp(livre.auteur,ptrB->etagere[i].auteur))
+        if(strcmp(nom,ptrB->etagere[i].emprunteur)==0 && strcmp(livre.titre,ptrB->etagere[i].titre) ==0 && strcmp(livre.auteur,ptrB->etagere[i].auteur)==0)
         {
-            strcpy(ptrB->etagere[i].emprunteur,NULL);
+            strcpy(ptrB->etagere[i].emprunteur,"");
             test = 1;
-            break;
         }
     }
     return test;

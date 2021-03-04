@@ -18,9 +18,9 @@ printf("\n 5 - supprimer un livre de la bibliotheque");
 
 printf("\n 6 - emprunter un livre de la bibliotheque");
 printf("\n 7 - restituer/rendre un livre de la bibliotheque");
-printf("\n 8 - trier les livres (par titre)");
-printf("\n 9 - trier les livres (par auteur)");
-printf("\n 10 - trier les livres (par annee)");
+//printf("\n 8 - trier les livres (par titre)");
+//printf("\n 9 - trier les livres (par auteur)");
+//printf("\n 10 - trier les livres (par annee)");
 
 // si les 5 choix (6-10) sont bien codés, changez le type T_Emp et remplacez-le par la structure T_Emp visible dans livre.h
 // vous pourrez alors faire les menus 11,12,etc...
@@ -41,10 +41,8 @@ return choix;
 int main()
 {
 int reponse,chx;
-T_Bibliotheque B; 
-
+T_Bibliotheque B;
 chargement(&B);
-
 do
 {
 chx= menu();
@@ -88,14 +86,16 @@ switch(chx)
 
 			break;			
 	
-	    case 6 : emprunter(&B);
+	    case 6 : reponse=emprunter(&B);
             if (reponse==0)
             {
                 printf("Livre non ajouté");
             }
             else{
                 printf("Livre ajouté");
+				sauvegarde(&B);
             }
+			break;
 	    case 7 : reponse = restituer(&B);
             if (reponse==0)
             {
@@ -103,7 +103,9 @@ switch(chx)
             }
             else{
                 printf("Success");
+				sauvegarde(&B);
             }
+			break;
 	}
 
 }while(chx!=0);
