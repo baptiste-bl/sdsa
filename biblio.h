@@ -29,4 +29,7 @@ void sauvegarde(T_Bibliotheque *ptrB);
 void chargement(T_Bibliotheque *ptrB);
 int emprunter(T_Bibliotheque *ptrB);
 int restituer(T_Bibliotheque *ptrB);
+void trier_titre(T_Bibliotheque *ptrB);
+void trier_auteur(T_Bibliotheque *ptrB);
+void trier_annee(T_Bibliotheque *ptrB); //tri à bulles
 #endif

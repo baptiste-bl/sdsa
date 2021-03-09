@@ -161,9 +161,7 @@ int emprunter(T_Bibliotheque *ptrB){
     char nom_emp[50]="";
     char auteur[50]="";
     char titre[50]="";
-    //T_livre livre;
     int test = 0;
-    //saisirLivre(&livre);
     lireChaine("AUTEUR :",auteur, 50 );
     lireChaine("TITRE :",titre, 50 );
     lireChaine("EMPRUNTEUR : ",nom_emp,50);
@@ -194,4 +192,74 @@ int restituer(T_Bibliotheque *ptrB){
     }
     return test;
 
+}
+
+void trier_titre(T_Bibliotheque *ptrB) //tri à bulles
+{
+    int compteur = 0;
+    int i; // initialisation
+    char temoin = 1;
+    T_livre echangeur;
+    while(temoin == 1)
+    {
+        temoin = 0;
+        for(i=0;i < ptrB->nbLivres - compteur;i++)
+        {
+            if(strcmp(ptrB->etagere[i].titre,ptrB->etagere[i+1].titre) > 0)
+            {
+                printf("rentré");
+                temoin = 1;
+                echangeur = ptrB->etagere[i];
+                ptrB->etagere[i] = ptrB->etagere[i+1];
+                ptrB->etagere[i+1] = echangeur;
+            }
+        }
+        compteur++;
+    }
+}
+void trier_auteur(T_Bibliotheque *ptrB) //tri à bulles
+{
+    int compteur = 0;
+    int i; // initialisation
+    char temoin = 1;
+    T_livre echangeur;
+    while(temoin == 1)
+    {
+        temoin = 0;
+        for(i=0;i < ptrB->nbLivres - compteur;i++)
+        {
+            if(strcmp(ptrB->etagere[i].auteur,ptrB->etagere[i+1].auteur) > 0)
+            {
+                printf("rentré");
+                temoin = 1;
+                echangeur = ptrB->etagere[i];
+                ptrB->etagere[i] = ptrB->etagere[i+1];
+                ptrB->etagere[i+1] = echangeur;
+            }
+        }
+        compteur++;
+    }
+}
+void trier_annee(T_Bibliotheque *ptrB) //tri à bulles
+{
+    int compteur = 0;
+    int i; // initialisation
+    char temoin = 1;
+    T_livre echangeur;
+    while(temoin == 1)
+    {
+        temoin = 0;
+        for(i=0;i < ptrB->nbLivres - compteur;i++)
+        {
+            if(ptrB->etagere[i].annee < ptrB->etagere[i+1].annee)
+            {
+                printf("rentré");
+                temoin = 1;
+                echangeur = ptrB->etagere[i];
+                ptrB->etagere[i] = ptrB->etagere[i+1];
+                ptrB->etagere[i+1] = echangeur;
+            }
+        }
+        compteur++;
+    }
 }
