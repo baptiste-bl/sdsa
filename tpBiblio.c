@@ -42,7 +42,8 @@ int main()
 {
 int reponse,chx;
 T_Bibliotheque B;
-chargement(&B);
+init(&B);
+//chargement(&B);
 do
 {
 chx= menu();

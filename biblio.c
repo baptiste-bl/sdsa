@@ -9,6 +9,7 @@ void init (T_Bibliotheque *ptrB)
 
 int ajouterLivre(T_Bibliotheque  *ptrB)
 {
+    
     if (ptrB->nbLivres<CAPACITE_BIBLIO)// reste t il de la place?
     {
         saisirLivre(&(ptrB->etagere[ptrB->nbLivres]));
@@ -161,7 +162,9 @@ int emprunter(T_Bibliotheque *ptrB){
     char nom_emp[50]="";
     char auteur[50]="";
     char titre[50]="";
+    //T_livre livre;
     int test = 0;
+    //saisirLivre(&livre);
     lireChaine("AUTEUR :",auteur, 50 );
     lireChaine("TITRE :",titre, 50 );
     lireChaine("EMPRUNTEUR : ",nom_emp,50);
@@ -196,7 +199,7 @@ int restituer(T_Bibliotheque *ptrB){
 
 void trier_titre(T_Bibliotheque *ptrB) //tri à bulles
 {
-    int compteur = 0;
+    int compteur = 1;
     int i; // initialisation
     char temoin = 1;
     T_livre echangeur;
@@ -219,7 +222,7 @@ void trier_titre(T_Bibliotheque *ptrB) //tri à bulles
 }
 void trier_auteur(T_Bibliotheque *ptrB) //tri à bulles
 {
-    int compteur = 0;
+    int compteur = 1;
     int i; // initialisation
     char temoin = 1;
     T_livre echangeur;
@@ -242,7 +245,7 @@ void trier_auteur(T_Bibliotheque *ptrB) //tri à bulles
 }
 void trier_annee(T_Bibliotheque *ptrB) //tri à bulles
 {
-    int compteur = 0;
+    int compteur = 1;
     int i; // initialisation
     char temoin = 1;
     T_livre echangeur;
@@ -253,9 +256,10 @@ void trier_annee(T_Bibliotheque *ptrB) //tri à bulles
         {
             if(ptrB->etagere[i].annee < ptrB->etagere[i+1].annee)
             {
-                printf("rentré");
                 temoin = 1;
                 echangeur = ptrB->etagere[i];
+                printf("LIVRE\n");
+                afficherLivre(&echangeur);
                 ptrB->etagere[i] = ptrB->etagere[i+1];
                 ptrB->etagere[i+1] = echangeur;
             }
