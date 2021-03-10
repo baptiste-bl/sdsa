@@ -5,7 +5,7 @@ void saisirLivre(T_livre * ptrL)
 {
 lireChaine("TITRE :", (ptrL->titre), MAX_TITRE );
 lireChaine("AUTEUR :", (ptrL->auteur ), MAX);
-
+lireChaine("CODE :", (ptrL->code ), MAX_CODE);
 printf("ANNEE: "); //rajout
 scanf("%d",&ptrL->annee);
 
@@ -20,6 +20,9 @@ printf("\n");
 
 printf("ANNEE : %d",ptrL->annee);
 printf("\n"); //rajout
+
+afficherChaine("CODE :", (ptrL->code ));
+printf("\n");
 
 afficherChaine("EMPRUNTEUR :", (ptrL->emprunteur ));
 printf("\n");
