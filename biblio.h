@@ -32,4 +32,5 @@ int restituer(T_Bibliotheque *ptrB);
 void trier_titre(T_Bibliotheque *ptrB);
 void trier_auteur(T_Bibliotheque *ptrB);
 void trier_annee(T_Bibliotheque *ptrB); //tri à bulles
+void lireDateSysteme(T_Emp *E);
 #endif
