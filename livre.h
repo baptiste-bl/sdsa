@@ -33,7 +33,7 @@ T_Jour lejour;
 int ledate;
 T_Mois lemois;
 int lannee;
-int seconde;
+long int seconde;
 }T_Emp ;
 
 
