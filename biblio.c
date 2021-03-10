@@ -86,14 +86,19 @@ int suppression(T_Bibliotheque *ptrB){
     T_livre livre;
     saisirLivre(&livre);
     //lireChaine("AUTEUR :",livre.auteur, K_MaxAut );
+    //lireChaine("TITRE :",livre.auteur, K_MaxAut );
     int i=0;
     int test = 0;
 
     for(i=0;i<ptrB->nbLivres;i++)
     {
-        if(strcmp((livre.auteur),ptrB->etagere[i].auteur)==0 && strcmp(livre.titre,ptrB->etagere[i].titre)==0)
+        if(strcmp((livre.auteur),ptrB->etagere[i].auteur)==0 && strcmp(livre.titre,ptrB->etagere[i].titre)==0 )
         {
+            if(livre.annee == ptrB->etagere[i].annee && strcmp((livre.code),ptrB->etagere[i].code)==0 ) //rajout 
+            {
+
             test=1;
+            }
         }
         if(test == 1)
         {
@@ -172,7 +177,8 @@ int emprunter(T_Bibliotheque *ptrB){
     {
         if((strcmp(ptrB->etagere[i].titre,titre)==0)&&(strcmp(ptrB->etagere[i].auteur,auteur)==0))
         {
-            strcpy(ptrB->etagere[i].emprunteur,nom_emp);
+            strcpy(ptrB->etagere[i].emprunteur.nomemp,nom_emp);
+            lireDateSysteme(&ptrB->etagere[i].emprunteur);
             test = 1;//success
         }
     }
@@ -187,9 +193,9 @@ int restituer(T_Bibliotheque *ptrB){
     saisirLivre(&livre);
     for(int i=0;i<ptrB->nbLivres;i++)
     {
-        if(strcmp(nom,ptrB->etagere[i].emprunteur)==0 && strcmp(livre.titre,ptrB->etagere[i].titre) ==0 && strcmp(livre.auteur,ptrB->etagere[i].auteur)==0)
+        if(strcmp(nom,ptrB->etagere[i].emprunteur.nomemp)==0 && strcmp(livre.titre,ptrB->etagere[i].titre) ==0 && strcmp(livre.auteur,ptrB->etagere[i].auteur)==0)
         {
-            strcpy(ptrB->etagere[i].emprunteur,"");
+            strcpy(ptrB->etagere[i].emprunteur.nomemp,"");
             test = 1;
         }
     }
@@ -210,7 +216,6 @@ void trier_titre(T_Bibliotheque *ptrB) //tri à bulles
         {
             if(strcmp(ptrB->etagere[i].titre,ptrB->etagere[i+1].titre) > 0)
             {
-                printf("rentré");
                 temoin = 1;
                 echangeur = ptrB->etagere[i];
                 ptrB->etagere[i] = ptrB->etagere[i+1];
@@ -233,7 +238,6 @@ void trier_auteur(T_Bibliotheque *ptrB) //tri à bulles
         {
             if(strcmp(ptrB->etagere[i].auteur,ptrB->etagere[i+1].auteur) > 0)
             {
-                printf("rentré");
                 temoin = 1;
                 echangeur = ptrB->etagere[i];
                 ptrB->etagere[i] = ptrB->etagere[i+1];
@@ -258,12 +262,73 @@ void trier_annee(T_Bibliotheque *ptrB) //tri à bulles
             {
                 temoin = 1;
                 echangeur = ptrB->etagere[i];
-                printf("LIVRE\n");
-                afficherLivre(&echangeur);
                 ptrB->etagere[i] = ptrB->etagere[i+1];
                 ptrB->etagere[i+1] = echangeur;
             }
         }
         compteur++;
     }
+}
+
+
+void lireDateSysteme(T_Emp *E)
+{
+char j[9],m[10],h[9],mer[11],vir[2];
+int d,a;
+system("date > ladate"	);
+FILE * fic=NULL;  // pointeur de fichier
+fic=fopen("ladate","r"); //fileOpen en mode 'r'EAD
+
+//ici , si fic vaut NULL, alors le fopen a indiqué
+//que le fichier ladate n'est pas accessible
+if (fic!=NULL)
+	{
+	while(!feof(fic))	
+		{
+		fscanf(fic,"%s %d %s %d %s %s %s",j,&d,m,&a,vir,h,mer);		
+		if (!feof(fic)) 
+			printf("\n-->LU : %s- %d- %s- %d- %s- %s",j,d,m,a,h,mer);		
+
+		}
+	fclose(fic);
+	
+if (strcmp(j,"lundi")==0) E->lejour=lu;
+if (strcmp(j,"mardi")==0) E->lejour=ma;
+if (strcmp(j,"mercredi")==0) E->lejour=me;
+if (strcmp(j,"jeudi")==0) E->lejour=je;
+if (strcmp(j,"vendredi")==0) E->lejour=ve;
+if (strcmp(j,"samedi")==0) E->lejour=sa;
+if (strcmp(j,"dimanche")==0) E->lejour=di;
+
+E->ledate=d;
+
+if (strcmp(m,"janvier")==0) E->lemois=janv;
+if (strcmp(m,"fevrier")==0) E->lemois=fevr;
+if (strcmp(m,"mars")==0) E->lemois=mars;
+if (strcmp(m,"avril")==0) E->lemois=avri;
+if (strcmp(m,"mai")==0) E->lemois=mai;
+if (strcmp(m,"juin")==0) E->lemois=juin;
+if (strcmp(m,"juillet")==0) E->lemois=juil;
+if (strcmp(m,"aout")==0) E->lemois=aout;
+if (strcmp(m,"septembre")==0) E->lemois=sept;
+if (strcmp(m,"octobre")==0) E->lemois=octo;
+if (strcmp(m,"novembre")==0) E->lemois=nove;
+if (strcmp(m,"decembre")==0) E->lemois=dece;
+
+
+E->lannee=a;
+	}
+	else
+	{
+		printf("n souci avec la date systeme !!");
+		
+		//on range une date irréelle 
+		E->lejour=di;
+		E->ledate=99;
+		E->lemois=dece;
+		E->lannee=-999;
+
+
+	}
+
 }
